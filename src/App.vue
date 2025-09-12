@@ -1,9 +1,14 @@
 <template>
   <Navbar />
-  <ProductCard />
+  <ProductList />
 </template>
 
 <script setup>
 import Navbar from './components/Navbar.vue'
-import ProductCard from './components/ProductCard.vue'
+import ProductList from './components/ProductList.vue';
+
 </script>
+<style>
+@import './assets/styles/colors.css';
+</style>
+
