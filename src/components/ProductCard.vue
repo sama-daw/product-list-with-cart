@@ -114,7 +114,7 @@ function decrease() {
   width: 150px;
   z-index: 2;
   border: 1px solid var(--color-rose-500);
-}
+ }
 .add-to-cart-btn:hover {
   border-color: var(--color-red);
   background-color: var(--color-rose-100);
