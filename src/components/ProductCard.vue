@@ -53,12 +53,10 @@
 <script setup>
 import { ref } from 'vue'
 
-// props
 const props = defineProps({
   product: Object
 })
 
-// events
 const emit = defineEmits(['add-to-cart'])
 
 const quantity = ref(0)
