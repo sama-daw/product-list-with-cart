@@ -9,6 +9,7 @@
   </div>
 </template>
 
+<!-- script -->
 <script setup>
 import ProductCard from './ProductCard.vue'
 import rawData from '@/data/data.json' 
