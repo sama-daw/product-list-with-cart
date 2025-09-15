@@ -12,7 +12,6 @@
         :alt="product.name"
       >
 
-      <!-- زر Add to Cart -->
       <div v-if="quantity === 0">
         <button 
           class="btn add-to-cart-btn" 
@@ -23,7 +22,6 @@
         </button>
       </div>
 
-      <!-- counter -->
       <div v-else class="counter-box">
         <button class="icon-btn" @click="decrease">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
@@ -69,7 +67,7 @@ const isAnimating = ref(false)
 function addToCart() {
   quantity.value = 1
   isAnimating.value = true
-  emit('add-to-cart', props.product) // ⬅️ هذا اللي يرسل للـ parent
+  emit('add-to-cart', props.product) 
   setTimeout(() => {
     isAnimating.value = false
   }, 500)
