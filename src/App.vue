@@ -1,19 +1,16 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Dessert Shop</a>
-      </div>
-    </nav>
-
     <div class="page-container">
-      <!-- Products -->
+      <!-- Products Section -->
       <div class="left dessertsSection">
         <h1>Desserts</h1>
-        <ProductList @add-to-cart="addToCart" />
+        <ProductList 
+          @add-to-cart="addToCart"   
+          @update-quantity="updateQuantity" 
+        />
       </div>
 
-      <!-- Cart -->
+      <!-- Cart Section -->
       <div class="right">
         <Cart
           :items="cartItems"
@@ -32,6 +29,7 @@ import Cart from '@/components/Cart.vue'
 
 const cartItems = ref([])
 
+// Add to cart
 function addToCart(product) {
   const item = cartItems.value.find(i => i.id === product.id)
   if (item) {
@@ -41,6 +39,7 @@ function addToCart(product) {
   }
 }
 
+// Update quantity
 function updateQuantity(productId, delta) {
   const it = cartItems.value.find(i => i.id === productId)
   if (!it) return
@@ -50,6 +49,7 @@ function updateQuantity(productId, delta) {
   }
 }
 
+// Remove item completely
 function removeFromCart(productId) {
   cartItems.value = cartItems.value.filter(i => i.id !== productId)
 }
@@ -60,35 +60,42 @@ function removeFromCart(productId) {
 
 .page-container {
   display: flex;
+  justify-content: space-between; /* يخليهم يتوزعوا */
+  align-items: flex-start;        /* يخليهم يبدؤوا من فوق */
+  max-width: 1200px;
+  margin: 0 auto;                 /* يوسّط كل البلوك */
   gap: 24px;
-  align-items: flex-start;
   padding: 20px 24px;
 }
 
 .left {
-  flex: 1;
-  min-width: 0;
+  flex: 7; /* 70% */
+}
+.right {
+  flex: 5;              /* يزيد العرض بالنسبة للـ left */
+  max-width: 700px;     /* أقصى عرض */
+  width: 100%;          /* يظل ملتزم بعرض الشاشة */
 }
 
-.right {
-  width: 340px;
-}
+
+
+
+
 
 @media (max-width: 992px) {
   .page-container {
-    flex-direction: column;
-    padding: 12px;
+    grid-template-columns: 1fr; /* عمود واحد */
   }
   .right {
-    width: 100%;
+    max-width: 100%; /* cart تاخد عرض كامل */
   }
 }
 
 .dessertsSection {
   align-self: flex-start;
   margin-top: 20px;
-  margin-left: 0; 
 }
+
 h1 {
   color: var(--color-rose-900);
   font-weight: 600;

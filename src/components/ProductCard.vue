@@ -12,16 +12,19 @@
         :alt="product.name"
       >
 
+      <!-- Add to Cart Button -->
       <div v-if="quantity === 0">
         <button 
           class="btn add-to-cart-btn" 
           @click="addToCart"
         >
+          <!-- أيقونة السلة -->
           <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20"><g fill="#C73B0F" clip-path="url(#a)"><path d="M6.583 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM15.334 18.75a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5ZM3.446 1.752a.625.625 0 0 0-.613-.502h-2.5V2.5h1.988l2.4 11.998a.625.625 0 0 0 .612.502h11.25v-1.25H5.847l-.5-2.5h11.238a.625.625 0 0 0 .61-.49l1.417-6.385h-1.28L16.083 10H5.096l-1.65-8.248Z"/><path d="M11.584 3.75v-2.5h-1.25v2.5h-2.5V5h2.5v2.5h1.25V5h2.5V3.75h-2.5Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.333 0h20v20h-20z"/></clipPath></defs></svg>
           Add to Cart
         </button>
       </div>
 
+      <!-- Counter -->
       <div v-else class="counter-box">
         <button class="icon-btn" @click="decrease">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
@@ -57,32 +60,36 @@ const props = defineProps({
   product: Object
 })
 
-const emit = defineEmits(['add-to-cart'])
+// بنعلن عن الأحداث اللي حنبعتها للـ App.vue
+const emit = defineEmits(['add-to-cart', 'update-quantity'])
 
 const quantity = ref(0)
 const isAnimating = ref(false)
 
+// أول مرة يضيف المنتج
 function addToCart() {
   quantity.value = 1
   isAnimating.value = true
-  emit('add-to-cart', props.product) 
-  setTimeout(() => {
-    isAnimating.value = false
-  }, 500)
+  emit('add-to-cart', props.product)  // بنبعت المنتج كله للـ App
+  setTimeout(() => { isAnimating.value = false }, 500)
 }
 
+// زيادة الكمية
 function increase() {
   quantity.value++
+  emit('update-quantity', props.product.id, 1) // نحدث الكمية في App.vue
 }
 
+// نقصان الكمية
 function decrease() {
-  if (quantity.value > 1) {
-    quantity.value--
-  } else {
+  quantity.value--
+  emit('update-quantity', props.product.id, -1)
+  if (quantity.value <= 0) {
     quantity.value = 0
   }
 }
 </script>
+
 
 <style scoped>
 .bg-rose-50 {
