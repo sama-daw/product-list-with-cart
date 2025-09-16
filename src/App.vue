@@ -3,7 +3,9 @@
     <div class="page-container">
       <div class="left dessertsSection">
         <h1>Desserts</h1>
+        <!-- نربط resetKey هون -->
         <ProductList 
+          :key="resetKey"
           @add-to-cart="addToCart"   
           @update-quantity="updateQuantity" 
         />
@@ -59,10 +61,9 @@
           </div>
         </div>
 
-        <!-- زر بدء طلب جديد -->
         <button 
           @click="confirmOrder" 
-          class="btn btn-danger w-100 rounded-pill fw-bold"
+          class="btn  w-100 rounded-pill fw-bold" style="background-color: var(  --color-red); color: white;"
         >
           Start New Order
         </button>
@@ -78,6 +79,7 @@ import Cart from '@/components/Cart.vue'
 
 const cartItems = ref([])
 const showConfirmModal = ref(false)
+const resetKey = ref(0)   // 👈 مفتاح لإعادة تحميل الكروت
 
 // ✅ لفتح المودال من الـ Cart
 function openConfirm() {
@@ -106,10 +108,9 @@ function removeFromCart(productId) {
 }
 
 function confirmOrder() {
-  cartItems.value = []
-  showConfirmModal.value = false
-  window.location.reload()   
-
+  cartItems.value = []            // تفريغ السلة
+  showConfirmModal.value = false  // إغلاق المودال
+  resetKey.value++                // 👈 هذا يعمل re-render لـ ProductList & ProductCard
 }
 
 const cartTotal = computed(() => {
