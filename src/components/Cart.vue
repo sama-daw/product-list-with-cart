@@ -23,7 +23,6 @@
         </div>
 
         <div class="d-flex align-items-center">
-          <!-- زر الحذف -->
           <button class="btn btn-sm delete-btn" @click="$emit('remove', item.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
               <path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
@@ -32,13 +31,11 @@
         </div>
       </div>
 
-      <!-- المجموع الكلي -->
       <div class="mt-3 d-flex justify-content-between">
         <span>Order Total</span>
         <span class="fw-bold">${{ totalPrice.toFixed(2) }}</span>
       </div>
 
-      <!-- مربع carbon-neutral -->
       <div class="carbon-box mt-3 d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">
           <path fill="#1EA575" d="M8 18.75H6.125V17.5H8V9.729L5.803 8.41l.644-1.072 2.196 1.318a1.256 1.256 0 0 1 .607 1.072V17.5A1.25 1.25 0 0 1 8 18.75Z"/>
@@ -47,7 +44,6 @@
         <span class="ms-2">This is a <strong>carbon-neutral</strong> delivery</span>
       </div>
 
-      <!-- زر التأكيد -->
     <button 
   class="confirm-btn btn btn-danger w-100 mt-3"
   @click="$emit('open-confirm')"
@@ -65,12 +61,10 @@ const props = defineProps({
   items: { type: Array, default: () => [] }
 })
 
-// عدد العناصر
 const totalItems = computed(() =>
   props.items.reduce((sum, item) => sum + item.quantity, 0)
 )
 
-// السعر الكلي
 const totalPrice = computed(() =>
   props.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
 )

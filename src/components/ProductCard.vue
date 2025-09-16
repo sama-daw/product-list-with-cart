@@ -25,7 +25,6 @@
         </button>
       </div>
 
-      <!-- Counter -->
       <div v-else class="counter-box">
         <button class="icon-btn" @click="decrease">
           <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
@@ -43,7 +42,6 @@
       </div>
     </div>
 <br>
-    <!-- 👇 عدلت من text-center إلى text-start -->
     <div class="card-body text-start">
       <p class="card-text mb-2">{{ product.description }}</p>
       <h5 class="card-title fw-semibold text-rose-900 mb-2">{{ product.name }}</h5>

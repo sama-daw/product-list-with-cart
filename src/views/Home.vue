@@ -49,7 +49,7 @@
           </div>
         </div>
 
-        <button @click="confirmOrder" class="btn btn-danger w-100 rounded-pill fw-bold">
+        <button @click="confirmOrder" class="btn  w-100 rounded-pill fw-bold" style="background-color: var( --color-red); color: white;">
           Start New Order
         </button>
       </div>
