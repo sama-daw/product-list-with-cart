@@ -12,7 +12,6 @@
         :alt="product.name"
       />
 
-      <!-- Add to Cart Button -->
       <div v-if="quantity === 0">
         <button class="btn add-to-cart-btn" @click="addToCart">
           <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">

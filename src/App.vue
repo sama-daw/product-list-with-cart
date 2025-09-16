@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="page-container">
-      <!-- Products Section -->
       <div class="left dessertsSection">
         <h1>Desserts</h1>
         <ProductList 
@@ -10,7 +9,6 @@
         />
       </div>
 
-      <!-- Cart Section -->
       <div class="right">
         <Cart
           :items="cartItems"
@@ -21,7 +19,6 @@
       </div>
     </div>
 
-    <!-- Confirm Modal -->
     <div v-if="showConfirmModal" class="modal-backdrop">
       <div class="modal-content" >
         <svg style="align-self: flex-start;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +43,6 @@ import Cart from '@/components/Cart.vue'
 const cartItems = ref([])
 const showConfirmModal = ref(false)
 
-// Add to cart
 function addToCart(product) {
   const item = cartItems.value.find(i => i.id === product.id)
   if (item) {
@@ -55,8 +51,6 @@ function addToCart(product) {
     cartItems.value.push({ ...product, quantity: 1 })
   }
 }
-
-// Update quantity
 function updateQuantity(productId, delta) {
   const it = cartItems.value.find(i => i.id === productId)
   if (!it) return
@@ -66,12 +60,10 @@ function updateQuantity(productId, delta) {
   }
 }
 
-// Remove item completely
 function removeFromCart(productId) {
   cartItems.value = cartItems.value.filter(i => i.id !== productId)
 }
 
-// Confirm order
 function confirmOrder() {
 
   cartItems.value = []
@@ -108,7 +100,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Modal styles */
 .modal-backdrop {
   position: fixed;
   inset: 0;
