@@ -1,29 +1,34 @@
 <template>
-  <div class="page-container">
-  
-    <div class="left">
-      <div class="dessertsSection">
+  <div>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Dessert Shop</a>
+      </div>
+    </nav>
+
+    <div class="page-container">
+      <!-- Products -->
+      <div class="left dessertsSection">
         <h1>Desserts</h1>
-        <!-- هون بنمرر الحدث -->
         <ProductList @add-to-cart="addToCart" />
       </div>
-    </div>
 
-    <div class="right">
-      <!-- هون بنمرر الكارت مع البيانات والدوال -->
-      <Cart 
-        :items="cartItems" 
-        @update-quantity="updateQuantity" 
-        @remove="removeFromCart" 
-      />
+      <!-- Cart -->
+      <div class="right">
+        <Cart
+          :items="cartItems"
+          @update-quantity="updateQuantity"
+          @remove="removeFromCart"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import ProductList from './components/ProductList.vue';
-import Cart from './components/Cart.vue';
-import { ref } from "vue"
+import { ref } from 'vue'
+import ProductList from '@/components/ProductList.vue'
+import Cart from '@/components/Cart.vue'
 
 const cartItems = ref([])
 
@@ -36,11 +41,11 @@ function addToCart(product) {
   }
 }
 
-function updateQuantity(productId, amount) {
-  const item = cartItems.value.find(i => i.id === productId)
-  if (!item) return
-  item.quantity += amount
-  if (item.quantity <= 0) {
+function updateQuantity(productId, delta) {
+  const it = cartItems.value.find(i => i.id === productId)
+  if (!it) return
+  it.quantity += delta
+  if (it.quantity <= 0) {
     cartItems.value = cartItems.value.filter(i => i.id !== productId)
   }
 }
