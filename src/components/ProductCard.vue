@@ -43,7 +43,8 @@
       </div>
     </div>
 <br>
-    <div class="card-body text-center">
+    <!-- 👇 عدلت من text-center إلى text-start -->
+    <div class="card-body text-start">
       <p class="card-text mb-2">{{ product.description }}</p>
       <h5 class="card-title fw-semibold text-rose-900 mb-2">{{ product.name }}</h5>
       <p class="card-text fw-semibold text-red mb-0">
