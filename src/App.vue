@@ -108,6 +108,8 @@ function removeFromCart(productId) {
 function confirmOrder() {
   cartItems.value = []
   showConfirmModal.value = false
+  window.location.reload()   
+
 }
 
 const cartTotal = computed(() => {
